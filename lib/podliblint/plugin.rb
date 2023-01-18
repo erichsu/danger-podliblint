@@ -86,7 +86,7 @@ module Danger
           fail("Pod lib lint: #{lint_summary} 🚨")
           failures = data.scan(/(?<=ERROR\s\|\s).*/i)
           failures.each do |failure|
-              fail("`" << ((failure.to_s.strip! || failure).to_s.gsub!(/`/,"") || failure).to_s << "`")
+              fail("`" << ((failure.to_s.strip! || failure).to_s.gsub!(/`/,"") || failure).to_s.gsub(`pwd`.strip!, "") << "`")
           end
       else
           message("Pod lib lint passed validation 🎊")
